@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"fmt"
 	drone "github.com/ngapung/phoenix/impl/drone/rpio"
 	server "github.com/ngapung/phoenix/impl/server/websocket"
 	"github.com/ngapung/phoenix/infra/config"
@@ -11,9 +10,6 @@ import (
 
 func Run() {
 	cfg := config.ReadConfig()
-
-	fmt.Println(cfg.Websocket)
-	fmt.Println(cfg.Drone)
 
 	d, err := drone.NewDrone(cfg.Drone)
 	if err != nil {
