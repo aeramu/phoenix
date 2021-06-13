@@ -9,7 +9,10 @@ import (
 )
 
 func Run() {
-	cfg := config.ReadConfig()
+	cfg, err := config.ReadConfig()
+	if err != nil {
+		log.WithField("err", err).Fatalln("Failed read config")
+	}
 
 	d, err := drone.NewDrone(cfg.Drone)
 	if err != nil {

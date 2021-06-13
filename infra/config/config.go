@@ -1,6 +1,9 @@
 package config
 
-import "gopkg.in/gcfg.v1"
+import (
+	"errors"
+	"gopkg.in/gcfg.v1"
+)
 
 var (
 	path = []string{
@@ -10,15 +13,17 @@ var (
 	filename = "main.ini"
 )
 
-func ReadConfig() Config {
+func ReadConfig() (Config, error) {
 	var cfg Config
 	for _, p := range path {
 		err := gcfg.ReadFileInto(&cfg, p+filename)
-		if err == nil {
-			break
+		if err != nil {
+			continue
+		} else {
+			return cfg, nil
 		}
 	}
-	return cfg
+	return cfg, errors.New("no valid config file in directory")
 }
 
 type Config struct {
