@@ -48,7 +48,7 @@ func (d *drone) SetCWBackSpeed(speed int) {
 }
 
 func serialFormat(motor string, speed int) []byte {
-	return []byte(fmt.Sprintf("%s %d", motor, speedStabilization(speed)))
+	return []byte(fmt.Sprintf("%s %d\n", motor, speedStabilization(speed)))
 }
 
 func speedStabilization(speed int) int {
