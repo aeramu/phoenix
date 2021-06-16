@@ -39,6 +39,8 @@ func (h *handler) Run() {
 				Int(req.Payload["cw_back"]),
 				Int(req.Payload["ccw_back"]),
 			)
+		case "SET_ALL_MOTOR_SPEED":
+			h.svc.SetAllMotorSpeed(Int(req.Payload["speed"]))
 		}
 	}
 }
