@@ -29,6 +29,7 @@ func ReadConfig() (Config, error) {
 type Config struct {
 	Websocket WebsocketConfig
 	GPIO      GPIOConfig
+	Serial    SerialConfig
 }
 
 type WebsocketConfig struct {
@@ -40,4 +41,8 @@ type GPIOConfig struct {
 	CCWFrontPin uint8
 	CWBackPin   uint8
 	CCWBackPin  uint8
+}
+
+type SerialConfig struct {
+	PortName string
 }

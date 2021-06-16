@@ -2,15 +2,14 @@ package drone
 
 import (
 	"fmt"
+	"github.com/ngapung/phoenix/infra/config"
 	"github.com/ngapung/phoenix/service"
 	"github.com/tarm/serial"
-	"io/ioutil"
-	"strings"
 )
 
-func NewDrone() (service.Drone, error) {
+func NewDrone(cfg config.SerialConfig) (service.Drone, error) {
 	port, err := serial.OpenPort(&serial.Config{
-		Name:        findArduino(),
+		Name:        cfg.PortName,
 		Baud:        9600,
 	})
 	if err != nil {
@@ -19,20 +18,6 @@ func NewDrone() (service.Drone, error) {
 	return &drone{
 		Port: port,
 	}, nil
-}
-
-func findArduino() string {
-	contents, _ := ioutil.ReadDir("/dev")
-
-	// Look for what is mostly likely the Arduino device
-	for _, f := range contents {
-		if strings.Contains(f.Name(), "tty.usbserial") ||
-			strings.Contains(f.Name(), "ttyUSB") {
-			return "/dev/" + f.Name()
-		}
-	}
-
-	return ""
 }
 
 type drone struct {

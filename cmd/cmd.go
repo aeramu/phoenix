@@ -14,7 +14,7 @@ func Run() {
 		log.WithField("err", err).Fatalln("Failed read config")
 	}
 
-	d, err := drone.NewDrone()
+	d, err := drone.NewDrone(cfg.Serial)
 	if err != nil {
 		log.WithField("err", err).Fatalln("Failed initiate drone")
 	}
