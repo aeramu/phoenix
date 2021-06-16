@@ -28,5 +28,6 @@ func Run() {
 		log.WithField("err", err).Fatalln("Failed initiate server")
 	}
 
+	log.Println("Program started.")
 	srv.Run()
 }
