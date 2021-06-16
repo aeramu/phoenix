@@ -28,14 +28,14 @@ func ReadConfig() (Config, error) {
 
 type Config struct {
 	Websocket WebsocketConfig
-	Drone     DroneConfig
+	GPIO      GPIOConfig
 }
 
 type WebsocketConfig struct {
 	URL string
 }
 
-type DroneConfig struct {
+type GPIOConfig struct {
 	CWFrontPin  uint8
 	CCWFrontPin uint8
 	CWBackPin   uint8

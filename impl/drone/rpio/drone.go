@@ -6,7 +6,7 @@ import (
 	"github.com/stianeikeland/go-rpio"
 )
 
-func NewDrone(cfg config.DroneConfig) (service.Drone, error) {
+func NewDrone(cfg config.GPIOConfig) (service.Drone, error) {
 	err := rpio.Open()
 	if err != nil {
 		return nil, err

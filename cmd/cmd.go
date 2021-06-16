@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	drone "github.com/ngapung/phoenix/impl/drone/rpio"
+	drone "github.com/ngapung/phoenix/impl/drone/serial"
 	server "github.com/ngapung/phoenix/impl/server/websocket"
 	"github.com/ngapung/phoenix/infra/config"
 	"github.com/ngapung/phoenix/service"
@@ -14,7 +14,7 @@ func Run() {
 		log.WithField("err", err).Fatalln("Failed read config")
 	}
 
-	d, err := drone.NewDrone(cfg.Drone)
+	d, err := drone.NewDrone()
 	if err != nil {
 		log.WithField("err", err).Fatalln("Failed initiate drone")
 	}
